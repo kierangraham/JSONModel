@@ -21,7 +21,7 @@ extern BOOL isNull(id value)
 {
     if (!value) return YES;
     if ([value isKindOfClass:[NSNull class]]) return YES;
-    
+
     return NO;
 }
 
@@ -44,7 +44,7 @@ extern BOOL isNull(id value)
     if ([sourceClass isSubclassOfClass:[NSString class]]) {
         return [NSString class];
     }
-    
+
     //check for all variations of numbers
     if ([sourceClass isSubclassOfClass:[NSNumber class]]) {
         return [NSNumber class];
@@ -54,7 +54,7 @@ extern BOOL isNull(id value)
     if ([sourceClass isSubclassOfClass:[NSArray class]]) {
         return [NSArray class];
     }
-    
+
     //check for all variations of arrays
     if ([sourceClass isSubclassOfClass:[NSDictionary class]]) {
         return [NSDictionary class];
@@ -176,17 +176,18 @@ extern BOOL isNull(id value)
 {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     string = [string stringByReplacingOccurrencesOfString:@":" withString:@""]; // this is such an ugly code, is this the only way?
-    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HHmmssZZZZ"];
-    
+    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HHmmss.SSS'Z'"];
+
     return [dateFormatter dateFromString: string];
 }
 
 -(NSString*)JSONObjectFromNSDate:(NSDate*)date
 {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZZ"];
-    
+    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"];
+
     return [dateFormatter stringFromDate:date];
 }
+
 
 @end
